@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "654069731109",
+    "firebase_url": "https://pit-stop-6e8ad-default-rtdb.firebaseio.com",
+    "project_id": "pit-stop-6e8ad",
+    "storage_bucket": "pit-stop-6e8ad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654069731109:android:0b14344fde169c155a14cc",
+        "android_client_info": {
+          "package_name": "com.example.pit_stop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpXmEB64pvQnK9OP5aqHKXi0Bw6clMXP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
