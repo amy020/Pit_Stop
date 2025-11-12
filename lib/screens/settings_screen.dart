@@ -21,6 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Colors.green,
     Colors.orange,
     const Color.fromARGB(255, 246, 152, 188),
+    const Color.fromARGB(255, 141, 194, 222),
   ];
 
   @override
