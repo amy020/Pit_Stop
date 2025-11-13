@@ -13,15 +13,15 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   // A small palette of seed colors to choose from.
   final List<Color> _colors = [
-    Colors.red,
-    Colors.deepPurple,
-    Colors.indigo,
-    Colors.blue,
-    Colors.teal,
-    Colors.green,
-    Colors.orange,
+    const Color.fromARGB(255, 116, 12, 4),
+    const Color.fromARGB(255, 69, 21, 151),
+    const Color.fromARGB(255, 43, 62, 171),
+    const Color.fromARGB(255, 20, 60, 92),
+    const Color.fromARGB(255, 3, 60, 55),
+    const Color.fromARGB(255, 9, 73, 12),
+    const Color.fromARGB(255, 132, 80, 2),
     const Color.fromARGB(255, 246, 152, 188),
-    const Color.fromARGB(255, 141, 192, 219),
+    const Color.fromARGB(255, 1, 33, 51),
   ];
 
   @override

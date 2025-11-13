@@ -8,6 +8,9 @@ import 'package:pit_stop/screens/park_screen.dart';
 import 'package:pit_stop/screens/settings_screen.dart';
 import 'package:pit_stop/screens/login_screen.dart';
 import 'package:pit_stop/screens/register_screen.dart';
+import 'package:pit_stop/screens/lots_screen.dart';
+import 'package:pit_stop/screens/availability_screen.dart';
+import 'package:pit_stop/screens/lot_overview_screen.dart';
 import 'package:pit_stop/theme_manager.dart';
 
 Future<void> main() async {
@@ -51,21 +54,32 @@ class MyApp extends StatelessWidget {
     return AnimatedBuilder(
       animation: themeManager,
       builder: (context, _) {
+            final lightScheme = ColorScheme.fromSeed(seedColor: themeManager.seedColor);
+            final darkScheme = ColorScheme.fromSeed(seedColor: themeManager.seedColor, brightness: Brightness.dark);
+
             return MaterialApp(
               title: 'Pit Stop',
               theme: ThemeData(
-                // light theme uses the current seed color
-                colorScheme: ColorScheme.fromSeed(seedColor: themeManager.seedColor),
+                colorScheme: lightScheme,
                 textTheme: GoogleFonts.orbitronTextTheme(ThemeData.light().textTheme),
                 primaryTextTheme: GoogleFonts.orbitronTextTheme(ThemeData.light().primaryTextTheme),
+                appBarTheme: AppBarTheme(
+                  backgroundColor: lightScheme.primary,
+                  foregroundColor: lightScheme.onPrimary,
+                  titleTextStyle: GoogleFonts.orbitron(fontSize: 20, fontWeight: FontWeight.w600, color: lightScheme.onPrimary),
+                  toolbarTextStyle: GoogleFonts.orbitronTextTheme().bodyMedium?.copyWith(color: lightScheme.onPrimary),
+                ),
               ),
               darkTheme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: themeManager.seedColor,
-                  brightness: Brightness.dark,
-                ),
+                colorScheme: darkScheme,
                 textTheme: GoogleFonts.orbitronTextTheme(ThemeData.dark().textTheme),
                 primaryTextTheme: GoogleFonts.orbitronTextTheme(ThemeData.dark().primaryTextTheme),
+                appBarTheme: AppBarTheme(
+                  backgroundColor: darkScheme.primary,
+                  foregroundColor: darkScheme.onPrimary,
+                  titleTextStyle: GoogleFonts.orbitron(fontSize: 20, fontWeight: FontWeight.w600, color: darkScheme.onPrimary),
+                  toolbarTextStyle: GoogleFonts.orbitronTextTheme().bodyMedium?.copyWith(color: darkScheme.onPrimary),
+                ),
               ),
           themeMode: themeManager.mode,
           // Start the app at the login screen so users must log in first.
@@ -73,6 +87,8 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (context) => const MyHomePage(title: 'Pit Stop'),
             '/park': (context) => const ParkScreen(),
+            '/lots': (context) => const LotsScreen(),
+            '/availability': (context) => const AvailabilityScreen(),
             '/login': (context) => const LoginScreen(),
             '/register': (context) => const RegisterScreen(),
             '/settings': (context) => const SettingsScreen(),
@@ -86,15 +102,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -104,24 +111,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        // Here we take the value from the MyHomePage object that was created by the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      // Add a drawer so the hamburger menu appears and navigation options are visible.
-      drawer: Drawer(
+        drawer: Drawer(
         child: Column(
           children: [
             Expanded(
@@ -146,6 +142,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       Navigator.pop(context); // close drawer
                       Navigator.pushNamed(context, '/park');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.location_city),
+                    title: const Text('Lots'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/lots');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.assessment),
+                    title: const Text('Availability'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/availability');
                     },
                   ),
                   // Login/Register removed from the drawer — login happens first on app start
@@ -207,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 final brightness = Theme.of(context).brightness;
                 final imageAsset = brightness == Brightness.dark
                     ? 'assets/images/DarkMode.png'
-                    : 'assets/images/los-carros.png';
+                    : 'assets/images/3DCARS_ONLY.png';
 
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final brightness = Theme.of(context).brightness;
     final pitstopAsset = brightness == Brightness.dark
         ? 'assets/images/PITSTOP_dark.png'
-        : 'assets/images/PITSTOP-removebg-preview.png';
+        : 'assets/images/3DCARS_ONLY-removebg-preview.png';
 
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
@@ -86,9 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 180,
                 fit: BoxFit.contain,
                 errorBuilder: (ctx, err, stack) {
-                  if (pitstopAsset != 'assets/images/PITSTOP-removebg-preview.png') {
+                  if (pitstopAsset != 'assets/images/ssets/images/3DCARS_ONLY-removebg-preview.png') {
                     return Image.asset(
-                      'assets/images/PITSTOP-removebg-preview.png',
+                      'assets/images/3DCARS_ONLY-removebg-preview.png',
                       width: 290,
                       height: 180,
                       fit: BoxFit.contain,
